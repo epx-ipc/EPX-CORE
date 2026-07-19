@@ -1,0 +1,1 @@
+/usr/bin/c++ -O2 -g -DNDEBUG -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/chat.dir/chat.cpp.o -o chat  ../libepx.a /opt/homebrew/Cellar/libsodium/1.0.22/lib/libsodium.dylib

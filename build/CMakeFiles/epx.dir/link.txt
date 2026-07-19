@@ -1,0 +1,2 @@
+/usr/bin/ar qc libepx.a CMakeFiles/epx.dir/src/protocol.cpp.o CMakeFiles/epx.dir/src/credentials.cpp.o CMakeFiles/epx.dir/src/crypto.cpp.o CMakeFiles/epx.dir/src/registry.cpp.o CMakeFiles/epx.dir/src/keystore.cpp.o CMakeFiles/epx.dir/src/framing.cpp.o CMakeFiles/epx.dir/src/handshake.cpp.o CMakeFiles/epx.dir/src/host.cpp.o CMakeFiles/epx.dir/src/client.cpp.o CMakeFiles/epx.dir/src/identity.cpp.o CMakeFiles/epx.dir/src/init.cpp.o CMakeFiles/epx.dir/src/transport_posix.cpp.o CMakeFiles/epx.dir/src/paths_posix.cpp.o
+/usr/bin/ranlib libepx.a

@@ -1,0 +1,21 @@
+// The demo service's schema — the single source of truth for its payload
+// shapes, per the EPX serialization convention (docs/SERIALIZATION.md):
+// one .fbs per service, code generated per language with flatc, buffers
+// passed as the opaque `Bytes` payload of ordinary EPX endpoints.
+namespace epxdemo;
+
+table SearchRequest {
+  query: string (required);
+  limit: int = 10;
+}
+
+table SearchResult {
+  title: string (required);
+  score: float;
+}
+
+table SearchResponse {
+  results: [SearchResult] (required);
+}
+
+root_type SearchRequest;

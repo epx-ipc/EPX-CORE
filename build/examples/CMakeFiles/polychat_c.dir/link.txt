@@ -1,0 +1,1 @@
+/usr/bin/cc -O2 -g -DNDEBUG -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/polychat_c.dir/polychat_c.c.o -o polychat_c  -Wl,-rpath,/Users/neto/Desktop/EPX/EPX-CORE/build ../libepx_c.2.1.0.dylib

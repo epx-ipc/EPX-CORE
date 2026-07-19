@@ -1,0 +1,11 @@
+protocol 14 0.000191902
+lifecycle 14 0.0155615
+streaming 14 0.044621
+shutdown_hooks 14 0.0460982
+access 12 0.0473844
+limits 10 0.155627
+topic 9 0.122048
+registry 6 0.0369193
+rotation 5 0.310364
+c_api 3 0.392768
+---

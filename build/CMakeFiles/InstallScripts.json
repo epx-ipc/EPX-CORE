@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/neto/Desktop/EPX/EPX-CORE/build/cmake_install.cmake",
+		"/Users/neto/Desktop/EPX/EPX-CORE/build/examples/cmake_install.cmake",
+		"/Users/neto/Desktop/EPX/EPX-CORE/build/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,163 @@
+Start testing: Jul 19 18:46 -04
+----------------------------------------------------------
+1/10 Testing: protocol
+1/10 Test: protocol
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_protocol"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"protocol" start time: Jul 19 18:46 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"protocol" end time: Jul 19 18:46 -04
+"protocol" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/10 Testing: lifecycle
+2/10 Test: lifecycle
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_lifecycle"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"lifecycle" start time: Jul 19 18:46 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"lifecycle" end time: Jul 19 18:46 -04
+"lifecycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/10 Testing: streaming
+3/10 Test: streaming
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_streaming"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"streaming" start time: Jul 19 18:46 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   0.62 sec
+----------------------------------------------------------
+Test Passed.
+"streaming" end time: Jul 19 18:46 -04
+"streaming" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/10 Testing: shutdown_hooks
+4/10 Test: shutdown_hooks
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_shutdown_hooks"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"shutdown_hooks" start time: Jul 19 18:46 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   0.65 sec
+----------------------------------------------------------
+Test Passed.
+"shutdown_hooks" end time: Jul 19 18:46 -04
+"shutdown_hooks" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/10 Testing: access
+5/10 Test: access
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_access"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"access" start time: Jul 19 18:46 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   0.57 sec
+----------------------------------------------------------
+Test Passed.
+"access" end time: Jul 19 18:46 -04
+"access" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/10 Testing: limits
+6/10 Test: limits
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_limits"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"limits" start time: Jul 19 18:46 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   1.56 sec
+----------------------------------------------------------
+Test Passed.
+"limits" end time: Jul 19 18:47 -04
+"limits" time elapsed: 00:00:01
+----------------------------------------------------------
+
+7/10 Testing: topic
+7/10 Test: topic
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_topic"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"topic" start time: Jul 19 18:47 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   1.10 sec
+----------------------------------------------------------
+Test Passed.
+"topic" end time: Jul 19 18:47 -04
+"topic" time elapsed: 00:00:01
+----------------------------------------------------------
+
+8/10 Testing: registry
+8/10 Test: registry
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_registry"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"registry" start time: Jul 19 18:47 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"registry" end time: Jul 19 18:47 -04
+"registry" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/10 Testing: rotation
+9/10 Test: rotation
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_rotation"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"rotation" start time: Jul 19 18:47 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   1.55 sec
+----------------------------------------------------------
+Test Passed.
+"rotation" end time: Jul 19 18:47 -04
+"rotation" time elapsed: 00:00:01
+----------------------------------------------------------
+
+10/10 Testing: c_api
+10/10 Test: c_api
+Command: "/Users/neto/Desktop/EPX/EPX-CORE/build/tests/test_c_api"
+Directory: /Users/neto/Desktop/EPX/EPX-CORE/build/tests
+"c_api" start time: Jul 19 18:47 -04
+Output:
+----------------------------------------------------------
+all checks passed
+<end of output>
+Test time =   1.18 sec
+----------------------------------------------------------
+Test Passed.
+"c_api" end time: Jul 19 18:47 -04
+"c_api" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Jul 19 18:47 -04

@@ -1,0 +1,1 @@
+/usr/bin/cc -O2 -g -DNDEBUG -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/test_c_api.dir/test_c_api.c.o -o test_c_api  -Wl,-rpath,/Users/neto/Desktop/EPX/EPX-CORE/build ../libepx_c.2.1.0.dylib
