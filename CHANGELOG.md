@@ -8,7 +8,7 @@ versioning follows [SemVer](https://semver.org/).
 
 ### Added — distribution + showcase
 
-- **libepx_c absorbed as this repo's primary product** (former EPX-C-ABI
+- **libepx_c absorbed as this repo's primary product** (former EPX-CORE
   repo retired); README rewritten as the canonical hub listing every
   language implementation repo.
 - **CI/CD**: release workflow (tag `v*`) publishing prebuilt
