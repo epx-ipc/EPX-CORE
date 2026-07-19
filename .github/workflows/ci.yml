@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        build_type: [Debug, RelWithDebInfo]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install libsodium (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libsodium-dev
+
+      - name: Install libsodium (macOS)
+        if: runner.os == 'macOS'
+        run: brew install libsodium
+
+      - name: Configure
+        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DEPX_BUILD_EXAMPLES=ON -DEPX_BUILD_TESTS=ON -DEPX_BUILD_CLI=ON -DEPX_BUILD_CAPI=ON
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Test (C++ suites + C ABI suite)
+        run: ctest --test-dir build --output-on-failure --timeout 60
+
+  # Windows named-pipe transport is implemented but not yet verified in CI
+  # (see README.md "Platform support"). This job builds the library only
+  # (no tests/examples that need to actually establish a connection) so a
+  # compile regression is still caught; remove build_only once the
+  # transport has been run-tested and test.yml can drive it directly.
+  build-only-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install libsodium (vcpkg)
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+          .\vcpkg\vcpkg install libsodium:x64-windows
+
+      - name: Configure
+        run: cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake -DEPX_BUILD_EXAMPLES=ON -DEPX_BUILD_TESTS=OFF
+
+      - name: Build
+        run: cmake --build build --config RelWithDebInfo --parallel

@@ -1,0 +1,96 @@
+# Release automation for EPX-CORE. Pushing a tag `v*` (e.g. v2.1.0):
+#   1. builds + tests on macOS and Linux,
+#   2. packages libepx_c + headers + the epx CLI per platform,
+#   3. publishes a GitHub Release with those tarballs,
+#   4. (optional) bumps the Homebrew tap formula — enabled only when the
+#      HOMEBREW_TAP_TOKEN secret exists (a PAT with push access to
+#      epx-ipc/homebrew-epx).
+#
+# A push to main only runs CI (ci.yml); releases are tag-driven on
+# purpose — the core is the dependency of nine downstream repos, so
+# version bumps are deliberate events.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact: epx-linux-x86_64
+          - os: macos-latest
+            artifact: epx-macos-arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install libsodium (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libsodium-dev
+
+      - name: Install libsodium (macOS)
+        if: runner.os == 'macOS'
+        run: brew install libsodium
+
+      - name: Build + test
+        run: |
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DEPX_BUILD_TESTS=ON -DEPX_BUILD_CLI=ON -DEPX_BUILD_CAPI=ON
+          cmake --build build --parallel
+          ctest --test-dir build --output-on-failure --timeout 60
+
+      - name: Package
+        run: |
+          mkdir -p pkg/${{ matrix.artifact }}/{lib,include/epx,bin}
+          cp build/libepx_c.* pkg/${{ matrix.artifact }}/lib/ 2>/dev/null || true
+          cp include/epx/epx.hpp include/epx/epx_c.h pkg/${{ matrix.artifact }}/include/epx/
+          cp build/generated_include/epx/version.hpp pkg/${{ matrix.artifact }}/include/epx/
+          cp build/epx pkg/${{ matrix.artifact }}/bin/
+          tar -C pkg -czf ${{ matrix.artifact }}.tar.gz ${{ matrix.artifact }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}.tar.gz
+
+  release:
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.tar.gz"
+          generate_release_notes: true
+
+  homebrew:
+    needs: release
+    runs-on: ubuntu-latest
+    # Skipped entirely until the tap secret is configured.
+    if: ${{ vars.ENABLE_HOMEBREW_TAP == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: epx-ipc/homebrew-epx
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+
+      - name: Update formula
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          URL="https://github.com/epx-ipc/EPX-CORE/archive/refs/tags/${GITHUB_REF_NAME}.tar.gz"
+          SHA=$(curl -sL "$URL" | shasum -a 256 | cut -d' ' -f1)
+          sed -i "s|url \".*\"|url \"$URL\"|; s|sha256 \".*\"|sha256 \"$SHA\"|; s|version \".*\"|version \"$VERSION\"|" Formula/epx.rb
+          git config user.name "epx-release-bot"
+          git config user.email "release@epx.invalid"
+          git commit -am "epx ${GITHUB_REF_NAME}"
+          git push
