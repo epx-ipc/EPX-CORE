@@ -38,7 +38,7 @@ interoperates over the wire with this repo's C++ `chat` binary:
 
 C and C++ consumers use this repository directly. Everyone starts here:
 build EPX-CORE once, and every implementation repo finds `libepx_c` in
-`../EPX-CORE/build` (each README documents its overrides).
+`https://github.com/epx-ipc/EPX-COREbuild` (each README documents its overrides).
 
 ## What's in this repo
 
